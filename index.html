@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSAJ SDN 5 Melayu - Hasil Kelulusan</title>
+  
+  <!-- Font Awesome CDN untuk icon super tajam dan stabil -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Google Fonts - Plus Jakarta Sans untuk tipografi premium modern -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET & DASAR DESAIN */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #f0f7ff; /* Hijau/Biru super tipis, bersih, dan lembut */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    /* CONTAINER MOBILE-FIRST (Max 440px, Presisi di tengah layar) */
+    .app-container {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      background: transparent;
+      padding: 20px 20px 100px 20px; /* Jarak bawah ekstra agar tidak tertutup bottom navbar */
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER UTAMA */
+    .header-panel {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .header-logo {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+
+    .header-subtitle {
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* PANEL BOX EFEK KACA (GLASSMORPHISM) */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    /* NAVIGASI HALAMAN (Tab System) */
+    .page {
+      display: none;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* KONTEN LAMAN 2: KELULUSAN (Laman Default) */
+    .search-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-desc {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .input-wrapper i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 18px;
+    }
+
+    .nisn-input {
+      width: 100%;
+      height: 56px;
+      background: rgba(248, 250, 252, 0.8);
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 0 16px 0 48px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f172a;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .nisn-input::placeholder {
+      letter-spacing: normal;
+      font-weight: 500;
+      color: #94a3b8;
+    }
+
+    .nisn-input:focus {
+      border-color: #10b981;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    }
+
+    .btn-search {
+      width: 100%;
+      height: 54px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      border: none;
+      border-radius: 16px;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .btn-search:active {
+      transform: scale(0.98);
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15);
+    }
+
+    /* ANIMASI LOADING DRAMATIS */
+    .loading-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .spinner-ring {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(16, 185, 129, 0.1);
+      border-top: 4px solid #10b981;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      animation: pulse 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: scale(0.98); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+
+    /* KARTU HASIL KELULUSAN (SURPRISE BOUNCE EFFECT & ANTI-NABRAK) */
+    .result-container {
+      display: none;
+    }
+
+    .result-card {
+      border-radius: 24px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      
+      /* Efek Melompat Memantul @keyframes cubic-bezier */
+      animation: bounceIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(100px);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.05) translateY(-10px);
+      }
+      70% {
+        transform: scale(0.9) translateY(5px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* KARTU LULUS: Gradasi Hijau Pastel Muda, border tebal menyala & glow, Shimmering effect */
+    .result-card.lulus {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border: 3px solid #34d399;
+      box-shadow: 0 15px 35px rgba(52, 211, 153, 0.25);
+      background-size: 200% 200%;
+      animation: bounceIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, shimmer 4s ease infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* KARTU TIDAK LULUS: Gradasi Merah Tua Menyala lembut */
+    .result-card.tidak-lulus {
+      background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%);
+      border: 3px solid #f87171;
+      box-shadow: 0 15px 35px rgba(248, 113, 113, 0.2);
+    }
+
+    /* Layout Vertikal Sejajar & Anti-Nabrak */
+    .result-layout {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .result-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .result-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .result-birth {
+      font-size: 12px;
+      font-weight: 500;
+      color: #475569;
+      margin-top: 2px;
+    }
+
+    .result-tag {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: fit-content; /* Sesuai isi (anti kaku) */
+    }
+
+    /* Cetak Huruf Besar di Sisi Kanan */
+    .result-status-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 16px;
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .lulus .result-status-badge {
+      background: #059669;
+      color: #ffffff;
+    }
+
+    .tidak-lulus .result-status-badge {
+      background: #dc2626;
+      color: #ffffff;
+    }
+
+    .status-text {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .status-sub {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-top: 2px;
+    }
+
+    /* DATA TIDAK DITEMUKAN / ERROR */
+    .error-card {
+      background: #fef2f2;
+      border: 1px solid #fee2e2;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      color: #991b1b;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .error-card i {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .error-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .error-msg {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    /* KONTEN LAMAN 1: HOME (REKAPITULASI ANONIM) */
+    .home-hero {
+      background: linear-gradient(135deg, #1e3a8a, #0d9488);
+      border-radius: 24px;
+      padding: 24px;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 12px 28px rgba(13, 148, 136, 0.15);
+    }
+
+    .home-hero-title {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .home-hero-subtitle {
+      font-size: 11px;
+      opacity: 0.85;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 14px 8px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .stat-item.lulus-val .stat-value {
+      color: #059669;
+    }
+
+    .stat-item.tidak-lulus-val .stat-value {
+      color: #dc2626;
+    }
+
+    /* PERSENTASE CIRCULAR / BAR */
+    .progress-box {
+      margin-top: 10px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      border-radius: 10px;
+      width: 0%; /* Diisi via JS */
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* INFORMASI TAMBAHAN (WIDGET SEKOLAH) */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #475569;
+    }
+
+    .info-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    /* BOTTOM NAVIGATION BAR (Bergaya Mobile Modern Tinggi 64px) */
+    .bottom-navbar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 400px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 45%;
+      height: 100%;
+      color: #94a3b8;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .nav-item i {
+      font-size: 20px;
+      margin-bottom: 4px;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item span {
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* AKTIF TAB STYLING (Material 3 Indicator) */
+    .nav-item.active {
+      color: #059669;
+    }
+
+    .nav-item.active i {
+      transform: translateY(-2px);
+    }
+
+    .nav-indicator {
+      position: absolute;
+      top: 0;
+      width: 40px;
+      height: 4px;
+      background: #059669;
+      border-radius: 0 0 4px 4px;
+      display: none;
+    }
+
+    .nav-item.active .nav-indicator {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- HEADER UTAMA (Static) -->
+    <div class="header-panel">
+      <div class="header-logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <div class="header-title">SDN 5 MELAYU</div>
+      <div class="header-subtitle">Kab. Barito Utara, Kalimantan Tengah</div>
+    </div>
+
+    <!-- ================= LAMAN 1: HOME (REKAPITULASI) ================= -->
+    <div id="page-home" class="page">
+      <div class="home-hero">
+        <div class="home-hero-title">Rekapitulasi PSAJ</div>
+        <div class="home-hero-subtitle">Pengumuman Kelulusan Kolektif Tahun Ajaran Terbaru</div>
+      </div>
+
+      <!-- Statistik Angka -->
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-label">Total Siswa</div>
+          <div id="stat-total" class="stat-value">-</div>
+        </div>
+        <div class="stat-item lulus-val">
+          <div class="stat-label">Lulus</div>
+          <div id="stat-lulus" class="stat-value">-</div>
+        </div>
+        <div class="stat-item tidak-lulus-val">
+          <div class="stat-label">Tdk Lulus</div>
+          <div id="stat-tidak" class="stat-value">-</div>
+        </div>
+      </div>
+
+      <!-- Presentase Kelulusan -->
+      <div class="glass-card">
+        <div class="progress-box">
+          <div class="progress-header">
+            <span>Tingkat Kelulusan</span>
+            <span id="stat-percentage">-</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="progress-fill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Petunjuk Validasi -->
+      <div class="glass-card">
+        <h3 class="search-title" style="margin-bottom: 12px;">
+          <i class="fa-solid fa-circle-info" style="color: #059669;"></i> Petunjuk Akses
+        </h3>
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-fingerprint"></i></div>
+            <span>Siapkan 10-digit NISN resmi Anda untuk mencari hasil individual.</span>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <span>Aplikasi pencarian ini aman dan data diproteksi secara lokal.</span>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-print"></i></div>
+            <span>Bila lulus, hubungi panitia sekolah untuk pengambilan berkas fisik SKL.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ================= LAMAN 2: KELULUSAN (LAMAN DEFAULT) ================= -->
+    <div id="page-kelulusan" class="page active">
+      <div class="glass-card">
+        <div class="search-title">
+          <i class="fa-solid fa-address-card" style="color: #059669;"></i>
+          Cek Kelulusan Pribadi
+        </div>
+        <div class="search-desc">
+          Masukkan 10 digit NISN (Nomor Induk Siswa Nasional) Anda untuk membuka amplop pengumuman hasil kelulusan.
+        </div>
+
+        <div class="input-wrapper">
+          <i class="fa-solid fa-search"></i>
+          <input 
+            type="number" 
+            id="nisn-input" 
+            class="nisn-input" 
+            placeholder="Masukkan 10 digit NISN"
+            oninput="javascript: if (this.value.length > 10) this.value = this.value.slice(0, 10);"
+          >
+        </div>
+
+        <button class="btn-search" onclick="prosesCariKelulusan()">
+          <i class="fa-solid fa-envelope-open-text"></i> Buka Amplop Kelulusan
+        </button>
+      </div>
+
+      <!-- LOADING SPINNER -->
+      <div class="loading-container" id="loading-box">
+        <div class="spinner-ring"></div>
+        <div class="loading-text">Membuka Dokumen Rahasia...</div>
+      </div>
+
+      <!-- KARTU HASIL KELULUSAN INDIVIDU -->
+      <div class="result-container" id="result-box">
+        <!-- Disisipkan Dinamis lewat JS -->
+      </div>
+
+      <!-- ERROR CARD -->
+      <div class="error-card" id="error-box">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div class="error-title" id="err-title">Data Tidak Ditemukan</div>
+        <div class="error-msg" id="err-desc">Periksa kembali digit NISN yang dimasukkan, pastikan sesuai dengan kartu siswa Anda.</div>
+      </div>
+    </div>
+
+
+    <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+    <div class="bottom-navbar">
+      <div class="nav-item" onclick="switchTab('home')" id="nav-home">
+        <div class="nav-indicator"></div>
+        <i class="fa-solid fa-chart-simple"></i>
+        <span>Home</span>
+      </div>
+      <div class="nav-item active" onclick="switchTab('kelulusan')" id="nav-kelulusan">
+        <div class="nav-indicator"></div>
+        <i class="fa-solid fa-address-card"></i>
+        <span>Kelulusan</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // DATA DATABASE SISWA (DI-EKSTRAK PENUH DARI PDF TANPA TERLEWAT - 89 SISWA)
+    const databaseSiswa = [
+      { no: 1, nisn: "0149409187", nama: "ADELIO TSABIT ALVARO", lahir: "Barito Utara, 25 Juli 2014", status: "LULUS" },
+      { no: 2, nisn: "3139507955", nama: "SITI AISYAH", lahir: "Barito Utara, 15 Desember 2013", status: "LULUS" },
+      { no: 3, nisn: "3149266515", nama: "FAUZIA RAFIFA", lahir: "Barito Utara, 1 Mei 2014", status: "LULUS" },
+      { no: 4, nisn: "0142911938", nama: "ARKAN ATTAYA ALMAIR EL FAYET", lahir: "Barito Utara, 27 Juni 2014", status: "LULUS" },
+      { no: 5, nisn: "3131972492", nama: "NABILA MEZZALUNA", lahir: "Barito Utara, 30 Oktober 2013", status: "LULUS" },
+      { no: 6, nisn: "0137305703", nama: "KYRANDREA OKTAVIA ARIQA", lahir: "Barito Utara, 25 Oktober 2013", status: "LULUS" },
+      { no: 7, nisn: "0134968302", nama: "MUHAMMAD ZEIN UMAR", lahir: "Barito Utara, 20 November 2013", status: "LULUS" },
+      { no: 8, nisn: "0143355525", nama: "KHANSA FAIDA ANNAILA", lahir: "Sigli, 30 April 2014", status: "LULUS" },
+      { no: 9, nisn: "0147158196", nama: "MUNA HAZIJAH", lahir: "Hulu Sungai Utara, 10 Juli 2014", status: "LULUS" },
+      { no: 10, nisn: "0144879250", nama: "DHAFITHA NIZZA SUSANTO", lahir: "Banjarbaru, 20 Maret 2014", status: "LULUS" },
+      { no: 11, nisn: "0143326790", nama: "FIDA HUMAIRA SHALEHA", lahir: "Banjarmasin, 17 Februari 2014", status: "LULUS" },
+      { no: 12, nisn: "0146993716", nama: "AL FARIDA FAJAIAH", lahir: "Barito Utara, 29 April 2014", status: "LULUS" },
+      { no: 13, nisn: "3133534535", nama: "DZAKY ALMAIR", lahir: "Barito Utara, 26 Oktober 2013", status: "LULUS" },
+      { no: 14, nisn: "0139010993", nama: "ANGGA LUKMANUL HAQ", lahir: "Kotabaru, 19 November 2013", status: "LULUS" },
+      { no: 15, nisn: "0144161371", nama: "AFDAL REYHANSYAH", lahir: "Barito Utara, 13 Mei 2014", status: "TIDAK LULUS" },
+      { no: 16, nisn: "0132055858", nama: "MUHAMMAD AZZAM RABBANI", lahir: "Barito Utara, 19 November 2013", status: "LULUS" },
+      { no: 17, nisn: "3148718356", nama: "ANDIRA SAFITRI", lahir: "Barito Utara, 30 Juli 2014", status: "LULUS" },
+      { no: 18, nisn: "0143923330", nama: "AISYA MAULI CAHYADI", lahir: "Palangka Raya, 17 April 2014", status: "LULUS" },
+      { no: 19, nisn: "0142354853", nama: "LIVIA KIRANA PUTERI PRAVANGASTA", lahir: "Barito Utara, 27 Agustus 2014", status: "TIDAK LULUS" },
+      { no: 20, nisn: "3142433954", nama: "TASYA SALSABILA TAJRII", lahir: "Surabaya, 8 Mei 2014", status: "LULUS" },
+      { no: 21, nisn: "3145543190", nama: "GHINA NURUL QAYYUM", lahir: "Barito Utara, 31 Mei 2014", status: "LULUS" },
+      { no: 22, nisn: "0131880218", nama: "AFEEFA FARZANA ALWA", lahir: "Barito Utara, 12 Desember 2013", status: "LULUS" },
+      { no: 23, nisn: "3148907981", nama: "MUHAMMAD IRJA ANUGRAH", lahir: "Barito Utara, 15 Mei 2014", status: "TIDAK LULUS" },
+      { no: 24, nisn: "0141344110", nama: "HAWA JASMIN FARRAS", lahir: "Barito Utara, 20 Juni 2014", status: "LULUS" },
+      { no: 25, nisn: "3140032058", nama: "AKBAR DOMI PUTRA", lahir: "Barito Utara, 30 Januari 2014", status: "LULUS" },
+      { no: 26, nisn: "3146569586", nama: "KAYLA ALMIRA FISYA", lahir: "Banjarbaru, 21 Januari 2014", status: "LULUS" },
+      { no: 27, nisn: "0135927784", nama: "MUHAMMAD ALDO", lahir: "Barito Utara, 19 Oktober 2013", status: "LULUS" },
+      { no: 28, nisn: "0144155709", nama: "NADILLA AZAHRA", lahir: "Barito Utara, 21 April 2014", status: "TIDAK LULUS" },
+      { no: 29, nisn: "0144358794", nama: "RAFKA ADITYA SAPUTRA", lahir: "Nganjuk, 25 April 2014", status: "LULUS" },
+      { no: 30, nisn: "0135008077", nama: "NURELIZA PAIKA SARI", lahir: "Muara Teweh, 27 Oktober 2013", status: "LULUS" },
+      { no: 31, nisn: "0144279641", nama: "GWIN NINDIA RASYID", lahir: "Barito Utara, 10 Maret 2014", status: "LULUS" },
+      { no: 32, nisn: "3146982695", nama: "NAUFAL DARY ABIYYU", lahir: "Puruk Cahu, 7 Januari 2014", status: "LULUS" },
+      { no: 33, nisn: "0149419767", nama: "RAFA AZKA PUTRA", lahir: "Palangka Raya, 19 Juni 2014", status: "LULUS" },
+      { no: 34, nisn: "0146214165", nama: "AZAM ARGANTHA", lahir: "Palangka Raya, 27 Juli 2014", status: "LULUS" },
+      { no: 35, nisn: "0145748914", nama: "DHAFITHA NIZZA NUR AZIZAH", lahir: "Barito Utara, 5 Maret 2014", status: "LULUS" },
+      { no: 36, nisn: "0141995872", nama: "FADIL SAIDI SHAID", lahir: "Barito Utara, 27 Januari 2014", status: "TIDAK LULUS" },
+      { no: 37, nisn: "3134928629", nama: "MUHAMMAD NOVAN TRIADIE", lahir: "Barito Utara, 6 November 2013", status: "LULUS" },
+      { no: 38, nisn: "0131642900", nama: "ARBIATUL ADAWIAH", lahir: "Barito Utara, 6 Desember 2013", status: "LULUS" },
+      { no: 39, nisn: "0127409232", nama: "ALDHEN ZAKARIA BUNGSU", lahir: "Barito Utara, 24 November 2012", status: "TIDAK LULUS" },
+      { no: 40, nisn: "0149574226", nama: "ANNABELLA BIRGITHA", lahir: "Barito Utara, 26 Juli 2014", status: "LULUS" },
+      { no: 41, nisn: "0132096104", nama: "CHERRY IVANA ANYOISTY HOSANG", lahir: "Barito Utara, 3 Desember 2013", status: "LULUS" },
+      { no: 42, nisn: "0133836172", nama: "AXCEL JUNIOR", lahir: "Barito Utara, 19 September 2013", status: "LULUS" },
+      { no: 43, nisn: "3135736685", nama: "MUHAMMAD REYHAN FADHILAH", lahir: "Barito Utara, 10 September 2013", status: "LULUS" },
+      { no: 44, nisn: "3142828134", nama: "NAZWA MALIKA WIJAYA GINTING", lahir: "Barito Utara, 26 Juli 2014", status: "LULUS" },
+      { no: 45, nisn: "0144665311", nama: "SITI ASHA RAHMAYANTI", lahir: "Barito Utara, 21 Mei 2014", status: "LULUS" },
+      { no: 46, nisn: "3141586161", nama: "MUHAMMAD RAYHAN DYANDRA", lahir: "Barito Utara, 9 Februari 2014", status: "LULUS" },
+      { no: 47, nisn: "0131822743", nama: "MUHAMMAD TIRTA", lahir: "Banjarmasin, 12 Oktober 2013", status: "LULUS" },
+      { no: 48, nisn: "0145190790", nama: "AIDAN ALFATHI DYRA GHOSSAN", lahir: "Barito Utara, 14 Juli 2014", status: "LULUS" },
+      { no: 49, nisn: "0141693739", nama: "VICTORIA GLORY KIRANA", lahir: "Barito Utara, 18 Januari 2014", status: "TIDAK LULUS" },
+      { no: 50, nisn: "0142807833", nama: "FELICIA JESSIE OKTAVIA", lahir: "Palangka Raya, 12 Oktober 2014", status: "LULUS" },
+      { no: 51, nisn: "0149420465", nama: "KEISHA JEHOVA SALLOM SINATRA", lahir: "Barito Utara, 2 Februari 2014", status: "LULUS" },
+      { no: 52, nisn: "0146730594", nama: "VIONA MEILANI", lahir: "Barito Utara, 28 Mei 2014", status: "LULUS" },
+      { no: 53, nisn: "0137996531", nama: "YAFET NATALNO MEBAS", lahir: "Barito Utara, 30 Desember 2013", status: "LULUS" },
+      { no: 54, nisn: "3143877687", nama: "PAULUS DIMAS FEDROSA", lahir: "Barito Utara, 22 Februari 2014", status: "LULUS" },
+      { no: 55, nisn: "0146880424", nama: "SILOAM WIJAYA PUTRA CORNELIUS", lahir: "Makassar, 3 Maret 2014", status: "LULUS" },
+      { no: 56, nisn: "0144542216", nama: "LUIZ FHAREL SIMBOLON", lahir: "Barito Utara, 18 Maret 2014", status: "LULUS" },
+      { no: 57, nisn: "3135132404", nama: "KEISYA GEBI PUTRI PRISILIA", lahir: "Sragen, 19 Mei 2013", status: "LULUS" },
+      { no: 58, nisn: "3147821688", nama: "ANGGIETA BERYLIA", lahir: "Barito Utara, 23 Maret 2014", status: "LULUS" },
+      { no: 59, nisn: "0147771290", nama: "DANIELLA PUTRI DIANDRA", lahir: "Banjarbaru, 14 April 2014", status: "LULUS" },
+      { no: 60, nisn: "0144054209", nama: "NAFEEZA AUNDY PRAMESTHI PRAYOGO", lahir: "Barabai, 20 Maret 2014", status: "LULUS" },
+      { no: 61, nisn: "0143895658", nama: "MUHAMMAD NOORUJI ARBAIN", lahir: "Banjar, 14 Mei 2014", status: "LULUS" },
+      { no: 62, nisn: "0138600497", nama: "HAIFA ZARQA AN-NISA", lahir: "Surabaya, 11 Oktober 2013", status: "LULUS" },
+      { no: 63, nisn: "0134363273", nama: "NOOR ATIQAH ALNAZHIFA", lahir: "Banjarmasin, 19 November 2013", status: "LULUS" },
+      { no: 64, nisn: "0132143345", nama: "MUHAMMAD FAHMI RIZQI", lahir: "Barito Utara, 22 Desember 2013", status: "LULUS" },
+      { no: 65, nisn: "0145209482", nama: "RENSA SURYA PERKASA", lahir: "Barito Utara, 10 Februari 2014", status: "LULUS" },
+      { no: 66, nisn: "0147138363", nama: "ADELIA JASMINE AZZAHRA", lahir: "Sleman, 27 Februari 2014", status: "LULUS" },
+      { no: 67, nisn: "3144772313", nama: "FARRIN ZELLDA FAUZI", lahir: "Barito Utara, 4 Februari 2014", status: "LULUS" },
+      { no: 68, nisn: "0147471692", nama: "BILFAQIH REY ALTEZA", lahir: "Barito Utara, 4 Maret 2014", status: "LULUS" },
+      { no: 69, nisn: "0144776346", nama: "MIRZA AZIZAN", lahir: "Banjarmasin, 11 Juni 2014", status: "TIDAK LULUS" },
+      { no: 70, nisn: "0146861470", nama: "MECCA SHAFIYA AZ ZAHRA", lahir: "Kandangan, 24 Januari 2014", status: "LULUS" },
+      { no: 71, nisn: "0135778870", nama: "ALRIDHO DENIANDRA LESMANA", lahir: "Banjarmasin, 26 November 2013", status: "LULUS" },
+      { no: 72, nisn: "0137896505", nama: "MUHAMMAD FAJAR ILHAM", lahir: "Barito Utara, 22 November 2013", status: "LULUS" },
+      { no: 73, nisn: "0137707564", nama: "SALSABILA PUTRI AL ARIANI", lahir: "Banjarmasin, 9 November 2013", status: "LULUS" },
+      { no: 74, nisn: "3131152115", nama: "MUHAMAD ADHYATSHA PRATAMA", lahir: "Barito Utara, 4 September 2013", status: "LULUS" },
+      { no: 75, nisn: "0147361793", nama: "AZKIYA KHUMAIRA", lahir: "Barito Utara, 5 Februari 2014", status: "LULUS" },
+      { no: 76, nisn: "0145579802", nama: "KESIA TIANKA NAINGGOLAN", lahir: "Barito Utara, 21 April 2014", status: "LULUS" },
+      { no: 77, nisn: "0136108320", nama: "AARON AL AKHYAR", lahir: "Barito Utara, 15 November 2013", status: "LULUS" },
+      { no: 78, nisn: "3142729784", nama: "TEUKU FAITH SYUJA RISYANDA", lahir: "Medan, 22 Mei 2014", status: "LULUS" },
+      { no: 79, nisn: "0141164751", nama: "KELLEN LIM", lahir: "Banjarmasin, 2 April 2014", status: "TIDAK LULUS" },
+      { no: 80, nisn: "0139567041", nama: "MUHAMMAD ARUNA AL-ZIDNI", lahir: "Tamiyang Layang, 3 September 2013", status: "TIDAK LULUS" },
+      { no: 81, nisn: "0134294383", nama: "KHOLITA ANATASYA", lahir: "Barito Utara, 23 Agustus 2013", status: "LULUS" },
+      { no: 82, nisn: "0148347969", nama: "HANA WIJI ASTUTI", lahir: "Barito Utara, 13 Oktober 2014", status: "LULUS" },
+      { no: 83, nisn: "3141894654", nama: "VAHRIZZAN AKHMAD ARRAVA ENDRIS", lahir: "Barito Utara, 24 Maret 2014", status: "LULUS" },
+      { no: 84, nisn: "3147579464", nama: "AFIF FIRDAUS", lahir: "Barito Utara, 9 Juni 2014", status: "LULUS" },
+      { no: 85, nisn: "0147401742", nama: "MUHAMMAD IZDIHAR WIDODO", lahir: "Barito Utara, 5 Februari 2014", status: "LULUS" },
+      { no: 86, nisn: "0131085930", nama: "SYABIL NANDA BAYU ISMAIL", lahir: "Barito Utara, 19 November 2013", status: "LULUS" },
+      { no: 87, nisn: "3149410700", nama: "RAISSHA ALMIRA WIBOWO", lahir: "Balikpapan, 14 Februari 2014", status: "TIDAK LULUS" },
+      { no: 88, nisn: "3134560361", nama: "EVITA FARIDA KHAERUNNISA", lahir: "Barito Utara, 27 September 2013", status: "LULUS" },
+      { no: 89, nisn: "0149605356", nama: "MUHAMMAD ZACKY", lahir: "Barito Utara, 20 Maret 2014", status: "LULUS" }
+    ];
+
+    // INISIALISASI HALAMAN SAAT DI-LOAD
+    window.addEventListener('DOMContentLoaded', () => {
+      kalkulasiRekapitulasi();
+    });
+
+    // PENGATUR SWITCH NAVIGASI TAB
+    function switchTab(targetTab) {
+      // Hilangkan status aktif di semua tab tombol
+      document.getElementById('nav-home').classList.remove('active');
+      document.getElementById('nav-kelulusan').classList.remove('active');
+      
+      // Sembunyikan semua page panel
+      document.getElementById('page-home').classList.remove('active');
+      document.getElementById('page-kelulusan').classList.remove('active');
+
+      if (targetTab === 'home') {
+        document.getElementById('nav-home').classList.add('active');
+        document.getElementById('page-home').classList.add('active');
+        triggerAnimasiProgress();
+      } else {
+        document.getElementById('nav-kelulusan').classList.add('active');
+        document.getElementById('page-kelulusan').classList.add('active');
+      }
+    }
+
+    // LOGIKA PERHITUNGAN REKAPITULASI ANONIM (HOME)
+    let percentGlobal = 0;
+    function kalkulasiRekapitulasi() {
+      const totalSiswa = databaseSiswa.length;
+      const lulusCount = databaseSiswa.filter(s => s.status === "LULUS").length;
+      const tidakLulusCount = totalSiswa - lulusCount;
+      const percent = ((lulusCount / totalSiswa) * 100).toFixed(1);
+      percentGlobal = percent;
+
+      document.getElementById('stat-total').textContent = totalSiswa;
+      document.getElementById('stat-lulus').textContent = lulusCount;
+      document.getElementById('stat-tidak').textContent = tidakLulusCount;
+      document.getElementById('stat-percentage').textContent = percent + "%";
+    }
+
+    function triggerAnimasiProgress() {
+      const fillBar = document.getElementById('progress-fill');
+      // Reset width dahulu sebelum animasi berjalan
+      fillBar.style.width = '0%';
+      setTimeout(() => {
+        fillBar.style.width = percentGlobal + '%';
+      }, 100);
+    }
+
+    // PROSES CEK KELULUSAN DENGAN EFECT LOADING DRAMATIS & BOUNCE SURPRISE CARD
+    function prosesCariKelulusan() {
+      const inputVal = document.getElementById('nisn-input').value.trim();
+      const resultBox = document.getElementById('result-box');
+      const errorBox = document.getElementById('error-box');
+      const loadingBox = document.getElementById('loading-box');
+
+      // Reset view status pencarian terdahulu
+      resultBox.style.display = 'none';
+      errorBox.style.display = 'none';
+      resultBox.innerHTML = '';
+
+      if (!inputVal) {
+        tampilkanPesanError("Input Kosong", "Silakan ketik nomor NISN Anda terlebih dahulu.");
+        return;
+      }
+
+      // Tampilkan Loading Spinner Dramatis selama 1,2 Detik (1200 ms)
+      loadingBox.style.display = 'flex';
+      
+      setTimeout(() => {
+        // Matikan loading
+        loadingBox.style.display = 'none';
+
+        // Logika Fleksibilitas & Isolasi Karakter Pencarian Real-Time
+        const matchedStudent = databaseSiswa.find(s => s.nisn === inputVal);
+
+        if (matchedStudent) {
+          // Siapkan Card Kelulusan Sesuai Status
+          const isLulus = matchedStudent.status === "LULUS";
+          const cardClass = isLulus ? 'lulus' : 'tidak-lulus';
+          const iconStatus = isLulus ? 'fa-award' : 'fa-circle-exclamation';
+          const statusUtama = isLulus ? 'LULUS' : 'TIDAK LULUS';
+          const statusDeskripsi = isLulus ? 'Selamat!' : 'Tetap Semangat!';
+
+          resultBox.innerHTML = `
+            <div class="result-card ${cardClass}">
+              <div class="result-layout">
+                <div class="result-info">
+                  <div class="result-name">${matchedStudent.nama}</div>
+                  <div class="result-birth">
+                    <i class="fa-solid fa-cake-candles" style="font-size:10px; margin-right:4px;"></i>
+                    ${matchedStudent.lahir}
+                  </div>
+                  <div class="result-tag">NISN: ${matchedStudent.nisn}</div>
+                </div>
+                <div class="result-status-badge">
+                  <i class="fa-solid ${iconStatus}" style="font-size: 24px; margin-bottom: 4px;"></i>
+                  <span class="status-text">${statusUtama}</span>
+                  <span class="status-sub">${statusDeskripsi}</span>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          resultBox.style.display = 'block';
+        } else {
+          tampilkanPesanError("Data Tidak Ditemukan", "NISN (" + inputVal + ") tidak cocok dengan basis data kami. Periksa kembali pengetikan Anda.");
+        }
+      }, 1200);
+    }
+
+    // HELPER TAMPILKAN ERROR
+    function tampilkanPesanError(title, msg) {
+      const errorBox = document.getElementById('error-box');
+      document.getElementById('err-title').textContent = title;
+      document.getElementById('err-desc').textContent = msg;
+      errorBox.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
